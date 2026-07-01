@@ -1,0 +1,708 @@
+{
+  "name": "AI Console Portal",
+  "slug": "ai-console-portal",
+  "version": 1,
+  "description": "A glowing torus portal opens onto an AI console screenshot stepping forward into the scene, surrounded by orbiting prompt and output cards and a stream of particles slipping past the ring toward the camera.",
+  "dependencies": [
+    "three"
+  ],
+  "authorName": "@ybouane",
+  "authorUrl": "https://x.com/ybouane",
+  "tags": [
+    "ai",
+    "portal",
+    "console",
+    "screenshot",
+    "scanlines",
+    "three",
+    "cards",
+    "futuristic"
+  ],
+  "category": "Premium",
+  "featured": true,
+  "poster": "/images/heroes/ai-console-portal.png",
+  "install": {
+    "package": "@crazygl/hero-ai-console-portal"
+  },
+  "config": {
+    "managedWidth": true,
+    "innerWidth": 1100,
+    "managedHeight": true,
+    "defaultHeight": 760,
+    "styleInheritance": "none",
+    "usesCanvas": true,
+    "usesWebGL": true,
+    "usesThree": true,
+    "pointerTracking": true,
+    "resizeTracking": true,
+    "interactive": true,
+    "supportsImages": true,
+    "supportsTransparency": true,
+    "supportsFontCustomization": true,
+    "interactivityModes": [
+      "pointer",
+      "none"
+    ],
+    "interactivity": "pointer"
+  },
+  "customizer": {
+    "sections": [
+      {
+        "label": "Content",
+        "fields": [
+          {
+            "id": "contentType",
+            "label": "Content Type",
+            "type": "select",
+            "default": "heading",
+            "options": [
+              {
+                "label": "Heading",
+                "value": "heading"
+              },
+              {
+                "label": "Two Columns",
+                "value": "two-columns"
+              },
+              {
+                "label": "Custom",
+                "value": "custom"
+              }
+            ]
+          },
+          {
+            "id": "heading",
+            "label": "Heading",
+            "type": "text",
+            "default": "Step into the AI workspace.",
+            "showWhen": {
+              "contentType": "heading"
+            }
+          },
+          {
+            "id": "subheading",
+            "label": "Subheading",
+            "type": "textarea",
+            "default": "Prompts in, structured outputs out \u2014 your console, made tangible.",
+            "showWhen": {
+              "contentType": "heading"
+            }
+          },
+          {
+            "id": "column1",
+            "label": "Column 1",
+            "type": "node",
+            "default": "<h2>Prompts in.</h2><p>Cards orbit the portal carrying live snippets of the conversation.</p>",
+            "showWhen": {
+              "contentType": "two-columns"
+            }
+          },
+          {
+            "id": "column2",
+            "label": "Column 2",
+            "type": "node",
+            "default": "<h2>Outputs out.</h2><p>Generated results emerge from the portal as a tangible workspace.</p>",
+            "showWhen": {
+              "contentType": "two-columns"
+            }
+          },
+          {
+            "id": "content",
+            "label": "Content",
+            "type": "node",
+            "default": "<h1>Step into the AI workspace.</h1>",
+            "showWhen": {
+              "contentType": "custom"
+            }
+          }
+        ]
+      },
+      {
+        "label": "Screenshot",
+        "fields": [
+          {
+            "id": "screenshot",
+            "label": "Screenshot",
+            "type": "media",
+            "default": "https://crazygl.com/samples/screenshot-dashboard-dark.avif",
+            "description": "Console / chat / dashboard screenshot. PNG / JPG / AVIF / WebP. Dark UIs work best."
+          },
+          {
+            "id": "screenshotX",
+            "label": "Screenshot X",
+            "type": "slider",
+            "default": 0,
+            "min": -2,
+            "max": 2,
+            "step": 0.05,
+            "unit": "world"
+          },
+          {
+            "id": "screenshotY",
+            "label": "Screenshot Y",
+            "type": "slider",
+            "default": 0,
+            "min": -2,
+            "max": 2,
+            "step": 0.05,
+            "unit": "world"
+          },
+          {
+            "id": "screenshotScale",
+            "label": "Screenshot scale",
+            "type": "slider",
+            "default": 1.4,
+            "min": 0.5,
+            "max": 2.5,
+            "step": 0.05
+          },
+          {
+            "id": "screenshotTilt",
+            "label": "Screenshot tilt",
+            "type": "slider",
+            "default": -18.5,
+            "min": -45,
+            "max": 45,
+            "step": 0.5,
+            "unit": "\u00b0"
+          },
+          {
+            "id": "screenEmissive",
+            "label": "Screen emissive",
+            "type": "slider",
+            "default": 0.55,
+            "min": 0,
+            "max": 1.2,
+            "step": 0.05
+          }
+        ]
+      },
+      {
+        "label": "Portal",
+        "fields": [
+          {
+            "id": "portalRadius",
+            "label": "Portal radius",
+            "type": "slider",
+            "default": 1.6,
+            "min": 0.8,
+            "max": 2.2,
+            "step": 0.02,
+            "unit": "world"
+          },
+          {
+            "id": "portalTube",
+            "label": "Portal tube",
+            "type": "slider",
+            "default": 0.06,
+            "min": 0.02,
+            "max": 0.15,
+            "step": 0.005,
+            "unit": "world"
+          },
+          {
+            "id": "portalColor1",
+            "label": "Portal color A",
+            "type": "color",
+            "default": "#6ab2ff"
+          },
+          {
+            "id": "portalColor2",
+            "label": "Portal color B",
+            "type": "color",
+            "default": "#a070ff"
+          },
+          {
+            "id": "portalIntensity",
+            "label": "Portal intensity",
+            "type": "slider",
+            "default": 1.0,
+            "min": 0,
+            "max": 2,
+            "step": 0.05
+          },
+          {
+            "id": "portalPulseCount",
+            "label": "Portal pulses",
+            "type": "slider",
+            "default": 3,
+            "min": 1,
+            "max": 6,
+            "step": 1,
+            "description": "Bright streaks traveling around the ring."
+          },
+          {
+            "id": "portalPulseSpeed",
+            "label": "Pulse speed",
+            "type": "slider",
+            "default": 0.4,
+            "min": 0,
+            "max": 1,
+            "step": 0.02,
+            "unit": "Hz"
+          }
+        ]
+      },
+      {
+        "label": "Cards",
+        "fields": [
+          {
+            "id": "cardCount",
+            "label": "Card count",
+            "type": "slider",
+            "default": 6,
+            "min": 0,
+            "max": 6,
+            "step": 1
+          },
+          {
+            "id": "cardOrbitRadius",
+            "label": "Card orbit radius",
+            "type": "slider",
+            "default": 2.8,
+            "min": 1.5,
+            "max": 4,
+            "step": 0.05,
+            "unit": "world"
+          },
+          {
+            "id": "cardOrbitSpeed",
+            "label": "Card orbit speed",
+            "type": "slider",
+            "default": 0.05,
+            "min": 0,
+            "max": 0.3,
+            "step": 0.005,
+            "unit": "Hz"
+          }
+        ]
+      },
+      {
+        "label": "Card 1",
+        "fields": [
+          {
+            "id": "card1Mode",
+            "label": "Mode",
+            "type": "select",
+            "default": "text",
+            "options": [
+              {
+                "label": "Text",
+                "value": "text"
+              },
+              {
+                "label": "Image",
+                "value": "image"
+              }
+            ]
+          },
+          {
+            "id": "card1Image",
+            "label": "Image",
+            "type": "media",
+            "default": "",
+            "showWhen": {
+              "card1Mode": "image"
+            },
+            "description": "Image displayed on this card. Square or near-square crops read best."
+          },
+          {
+            "id": "card1Tag",
+            "label": "Tag",
+            "type": "text",
+            "default": "PROMPT",
+            "showWhen": {
+              "card1Mode": "text"
+            }
+          },
+          {
+            "id": "card1Body",
+            "label": "Body",
+            "type": "textarea",
+            "default": "Summarize this Q3 board report in three bullet points.",
+            "showWhen": {
+              "card1Mode": "text"
+            }
+          },
+          {
+            "id": "card1Color",
+            "label": "Tag color",
+            "type": "color",
+            "default": "#56e3ff",
+            "showWhen": {
+              "card1Mode": "text"
+            }
+          }
+        ]
+      },
+      {
+        "label": "Card 2",
+        "fields": [
+          {
+            "id": "card2Mode",
+            "label": "Mode",
+            "type": "select",
+            "default": "text",
+            "options": [
+              {
+                "label": "Text",
+                "value": "text"
+              },
+              {
+                "label": "Image",
+                "value": "image"
+              }
+            ]
+          },
+          {
+            "id": "card2Image",
+            "label": "Image",
+            "type": "media",
+            "default": "",
+            "showWhen": {
+              "card2Mode": "image"
+            },
+            "description": "Image displayed on this card. Square or near-square crops read best."
+          },
+          {
+            "id": "card2Tag",
+            "label": "Tag",
+            "type": "text",
+            "default": "OUTPUT",
+            "showWhen": {
+              "card2Mode": "text"
+            }
+          },
+          {
+            "id": "card2Body",
+            "label": "Body",
+            "type": "textarea",
+            "default": "Q3 revenue grew 24% YoY, driven by enterprise SaaS and rising APAC demand.",
+            "showWhen": {
+              "card2Mode": "text"
+            }
+          },
+          {
+            "id": "card2Color",
+            "label": "Tag color",
+            "type": "color",
+            "default": "#ffb45a",
+            "showWhen": {
+              "card2Mode": "text"
+            }
+          }
+        ]
+      },
+      {
+        "label": "Card 3",
+        "fields": [
+          {
+            "id": "card3Mode",
+            "label": "Mode",
+            "type": "select",
+            "default": "text",
+            "options": [
+              {
+                "label": "Text",
+                "value": "text"
+              },
+              {
+                "label": "Image",
+                "value": "image"
+              }
+            ]
+          },
+          {
+            "id": "card3Image",
+            "label": "Image",
+            "type": "media",
+            "default": "",
+            "showWhen": {
+              "card3Mode": "image"
+            },
+            "description": "Image displayed on this card. Square or near-square crops read best."
+          },
+          {
+            "id": "card3Tag",
+            "label": "Tag",
+            "type": "text",
+            "default": "SOURCE",
+            "showWhen": {
+              "card3Mode": "text"
+            }
+          },
+          {
+            "id": "card3Body",
+            "label": "Body",
+            "type": "textarea",
+            "default": "docs/architecture.md \u2014 3 passages cited.",
+            "showWhen": {
+              "card3Mode": "text"
+            }
+          },
+          {
+            "id": "card3Color",
+            "label": "Tag color",
+            "type": "color",
+            "default": "#a070ff",
+            "showWhen": {
+              "card3Mode": "text"
+            }
+          }
+        ]
+      },
+      {
+        "label": "Card 4",
+        "fields": [
+          {
+            "id": "card4Mode",
+            "label": "Mode",
+            "type": "select",
+            "default": "text",
+            "options": [
+              {
+                "label": "Text",
+                "value": "text"
+              },
+              {
+                "label": "Image",
+                "value": "image"
+              }
+            ]
+          },
+          {
+            "id": "card4Image",
+            "label": "Image",
+            "type": "media",
+            "default": "",
+            "showWhen": {
+              "card4Mode": "image"
+            },
+            "description": "Image displayed on this card. Square or near-square crops read best."
+          },
+          {
+            "id": "card4Tag",
+            "label": "Tag",
+            "type": "text",
+            "default": "ACTION",
+            "showWhen": {
+              "card4Mode": "text"
+            }
+          },
+          {
+            "id": "card4Body",
+            "label": "Body",
+            "type": "textarea",
+            "default": "Drafted email \u2192 Lina. Subject: Q3 review ready.",
+            "showWhen": {
+              "card4Mode": "text"
+            }
+          },
+          {
+            "id": "card4Color",
+            "label": "Tag color",
+            "type": "color",
+            "default": "#3cffe0",
+            "showWhen": {
+              "card4Mode": "text"
+            }
+          }
+        ]
+      },
+      {
+        "label": "Card 5",
+        "fields": [
+          {
+            "id": "card5Mode",
+            "label": "Mode",
+            "type": "select",
+            "default": "text",
+            "options": [
+              {
+                "label": "Text",
+                "value": "text"
+              },
+              {
+                "label": "Image",
+                "value": "image"
+              }
+            ]
+          },
+          {
+            "id": "card5Image",
+            "label": "Image",
+            "type": "media",
+            "default": "",
+            "showWhen": {
+              "card5Mode": "image"
+            },
+            "description": "Image displayed on this card. Square or near-square crops read best."
+          },
+          {
+            "id": "card5Tag",
+            "label": "Tag",
+            "type": "text",
+            "default": "PROMPT",
+            "showWhen": {
+              "card5Mode": "text"
+            }
+          },
+          {
+            "id": "card5Body",
+            "label": "Body",
+            "type": "textarea",
+            "default": "Generate SQL: top 10 users by 30-day session time.",
+            "showWhen": {
+              "card5Mode": "text"
+            }
+          },
+          {
+            "id": "card5Color",
+            "label": "Tag color",
+            "type": "color",
+            "default": "#ff3c8a",
+            "showWhen": {
+              "card5Mode": "text"
+            }
+          }
+        ]
+      },
+      {
+        "label": "Card 6",
+        "fields": [
+          {
+            "id": "card6Mode",
+            "label": "Mode",
+            "type": "select",
+            "default": "text",
+            "options": [
+              {
+                "label": "Text",
+                "value": "text"
+              },
+              {
+                "label": "Image",
+                "value": "image"
+              }
+            ]
+          },
+          {
+            "id": "card6Image",
+            "label": "Image",
+            "type": "media",
+            "default": "",
+            "showWhen": {
+              "card6Mode": "image"
+            },
+            "description": "Image displayed on this card. Square or near-square crops read best."
+          },
+          {
+            "id": "card6Tag",
+            "label": "Tag",
+            "type": "text",
+            "default": "OUTPUT",
+            "showWhen": {
+              "card6Mode": "text"
+            }
+          },
+          {
+            "id": "card6Body",
+            "label": "Body",
+            "type": "textarea",
+            "default": "Updated 3 files, 12 lines changed. Tests: 24/24 passing.",
+            "showWhen": {
+              "card6Mode": "text"
+            }
+          },
+          {
+            "id": "card6Color",
+            "label": "Tag color",
+            "type": "color",
+            "default": "#dceaff",
+            "showWhen": {
+              "card6Mode": "text"
+            }
+          }
+        ]
+      },
+      {
+        "label": "Particles",
+        "fields": [
+          {
+            "id": "particleCount",
+            "label": "Particle count",
+            "type": "slider",
+            "default": 300,
+            "min": 0,
+            "max": 600,
+            "step": 10
+          },
+          {
+            "id": "particleColor",
+            "label": "Particle color",
+            "type": "color",
+            "default": "#6ab2ff"
+          },
+          {
+            "id": "particleSpeed",
+            "label": "Particle speed",
+            "type": "slider",
+            "default": 0.35,
+            "min": 0,
+            "max": 1,
+            "step": 0.02,
+            "unit": "world/s"
+          }
+        ]
+      },
+      {
+        "label": "Atmosphere",
+        "fields": [
+          {
+            "id": "scanlineStrength",
+            "label": "Scanline strength",
+            "type": "slider",
+            "default": 0.06,
+            "min": 0,
+            "max": 0.2,
+            "step": 0.005,
+            "description": "Horizontal scanline overlay strength on screenshot + cards."
+          },
+          {
+            "id": "bgVignette",
+            "label": "Vignette color",
+            "type": "color",
+            "default": "#0a1230",
+            "description": "Inner vignette color around the portal."
+          },
+          {
+            "id": "bgEdge",
+            "label": "Edge color",
+            "type": "color",
+            "default": "#02040c"
+          },
+          {
+            "id": "transparentBackground",
+            "label": "Transparent background",
+            "type": "toggle",
+            "default": false
+          }
+        ]
+      },
+      {
+        "label": "Motion",
+        "fields": [
+          {
+            "id": "parallaxStrength",
+            "label": "Parallax strength",
+            "type": "slider",
+            "default": 0.5,
+            "min": 0,
+            "max": 1,
+            "step": 0.05
+          }
+        ]
+      }
+    ]
+  }
+}
