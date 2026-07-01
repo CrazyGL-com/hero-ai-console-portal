@@ -3,7 +3,7 @@ name: ai-console-portal
 description: "A glowing torus portal opens onto an AI console screenshot stepping forward into the scene, surrounded by orbiting prompt and output cards and a stream of particles slipping past the ring toward the camera."
 metadata:
   author: "@ybouane"
-  version: "0.1.0"
+  version: "0.1.1"
 ---
 
 ## How To Use This Skill

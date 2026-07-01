@@ -1,7 +1,7 @@
 {
 	"name": "@crazygl/hero-ai-console-portal",
-	"version": "0.1.0",
-	"description": "AI Console Portal — a glowing torus portal with the AI console screenshot emerging forward, surrounded by orbiting prompt/output cards and incoming particles.",
+	"version": "0.1.1",
+	"description": "AI Console Portal — A glowing torus portal opens onto an AI console screenshot stepping forward into the scene, surrounded by orbiting prompt and output cards and a stream of particles slipping past the ring toward the… A customizable CrazyGL animated hero section — WebGL, React, drop-in.",
 	"type": "module",
 	"main": "./dist/index.js",
 	"module": "./dist/index.js",
@@ -21,7 +21,7 @@
 		"LICENSE"
 	],
 	"dependencies": {
-		"@crazygl/core": "^0.1.0",
+		"@crazygl/core": "^0.1.1",
 		"three": "^0.160.0"
 	},
 	"peerDependencies": {
@@ -37,5 +37,31 @@
 	},
 	"publishConfig": {
 		"access": "public"
+	},
+	"keywords": [
+		"ai",
+		"portal",
+		"console",
+		"screenshot",
+		"scanlines",
+		"three",
+		"cards",
+		"futuristic",
+		"ai-console-portal",
+		"crazygl",
+		"hero",
+		"hero-section",
+		"webgl",
+		"react",
+		"animation",
+		"ui",
+		"landing-page",
+		"interactive",
+		"frontend",
+		"component",
+		"canvas"
+	],
+	"bugs": {
+		"url": "https://github.com/crazygl-com/hero-ai-console-portal/issues"
 	}
 }
